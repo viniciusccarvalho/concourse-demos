@@ -4,6 +4,11 @@ resources:
     source:
       branch: master
       uri: https://github.com/scottfrederick/spring-music.git
+  - name: pipelines
+    type: git
+    source:
+      branch: master
+      uri: https://github.com/viniciusccarvalho/concourse-demos
   - name: pcf
     type: cf
     source:
@@ -13,3 +18,14 @@ resources:
       password: {{deploy-password}}
       skip_cert_check: true
       space: {{pcf-space}}
+
+jobs:
+  - name: build-app
+    plan:
+      - aggregate:
+        - get: spring-music
+          trigger: true
+        - get: pipelines
+          trigger: true
+      - task: package
+        file: pipelines/spring-music/ci/package.yml
