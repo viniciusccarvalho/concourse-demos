@@ -1,0 +1,23 @@
+resources:
+  - name: spring-music
+    type: git
+    source:
+      branch: master
+      uri: https://github.com/scottfrederick/spring-music.git
+  - name: concourse-demos
+    type: git
+    source:
+      branch: master
+      uri: https://github.com/viniciusccarvalho/concourse-demos.git
+  - name: pcf
+    type: cf
+    source:
+      api: {{}}
+      organization: {{}}
+      username: {{}}
+      password: {{}}
+      skip_cert_check: true
+      space: {{}}
+
+jobs:
+  - name:

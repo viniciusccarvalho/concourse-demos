@@ -1,0 +1,14 @@
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: viniciusccarvalho/docker-jdk
+    tag: "latest"
+
+inputs:
+  - name: source_code
+
+run:
+  path: "source_code/gradlew"
+  args: ["-b","source_code/build.gradle","build"]
